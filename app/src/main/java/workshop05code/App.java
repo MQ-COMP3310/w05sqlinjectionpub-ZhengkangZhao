@@ -50,14 +50,16 @@ public class App {
             return;
         }
 
-        // let's add some words to valid 4 letter words from the data.txt file
+        // 5.3.2 let's add some words to valid 4 letter words from the data.txt file
 
         try (BufferedReader br = new BufferedReader(new FileReader("resources/data.txt"))) {
             String line;
             int i = 1;
             while ((line = br.readLine()) != null) {
+                if(line.matches("^[a-z]{4}$")){
                 System.out.println(line);
                 wordleDatabaseConnection.addValidWord(i, line);
+                }
                 i++;
             }
 
