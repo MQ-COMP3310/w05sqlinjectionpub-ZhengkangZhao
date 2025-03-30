@@ -57,13 +57,17 @@ public class App {
             int i = 1;
             while ((line = br.readLine()) != null) {
                 if(line.matches("^[a-z]{4}$")){
+                logger.info("Valid word: " + line); // Log valid word at INFO level
                 System.out.println(line);
                 wordleDatabaseConnection.addValidWord(i, line);
+                } else {
+                    logger.severe("Invalid word in data.txt: " + line); // Log at SEVERE level
                 }
                 i++;
             }
 
         } catch (IOException e) {
+            logger.log(Level.SEVERE, "Error reading from data.txt", e);
             System.out.println("Not able to load . Sorry!");
             System.out.println(e.getMessage());
             return;
@@ -94,6 +98,8 @@ public class App {
         } catch (NoSuchElementException | IllegalStateException e) {
             e.printStackTrace();
         }
+
+        
 
     }
 }
